@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>为爱下厨</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/swiper-3.4.2.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/animate.css"/>
+		<script type="text/javascript" src="js/zepto.min.js"></script>
+		<script type="text/javascript" src="js/touch.js"></script>
+		<!--<script type="text/javascript" src="js/jquery-3.2.1.js"></script>-->
+	</head>
+
+	<body>
+		<div class="loading">
+			<div class="loadingtext">0%</div>
+		</div>
+		<!--<div id="fakeloader"></div>-->
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<!--第一页-->
+				<div class="swiper-slide">
+					<div class="page1 page">
+						<div class="pg_tem">
+							<div class="pg_content">
+							</div>
+						</div>
+						<div class="arrow"></div>
+					</div>
+				</div>
+				<!--第二页-->
+				<div class="swiper-slide">
+					<div class="page2 page">
+						<div class="pic"></div>
+						<div class="lighting"></div>
+						<div class="pg2_content"></div>
+					</div>
+					<div class="arrow"></div>
+				</div>
+				<!--第三页-->
+				<div class="swiper-slide">
+					<div class="page3 page">
+						<div class="table"></div>
+						<div class="shad"></div>
+						<div class="page3_title page_title">
+							<p>你将时间分给了自己和工作</p>
+							<p>却一再错过与爸妈吃顿饭的承诺......</p>
+							<p>这一次，一起为爱下厨</p>
+						</div>
+						<div class="lighting3"></div>
+					</div>
+					<div class="arrow"></div>
+				</div>
+				<div class="swiper-slide">
+					<div class="page4 page">
+						<div class="page4_title page_title">
+							<p>爸爸妈妈用心的烹调和</p><span class="page4_word">陪伴</span>
+							<p>是孩子成长路上最好的味道</p>
+							<p>这一次，一起为爱下厨</p>
+						</div>
+					</div>
+					<div class="arrow"></div>
+				</div>
+				<div class="swiper-slide">
+					<div class="page5 page">
+						<div class="pg5_tem">
+							<div class="pg5_content"></div>
+						</div>
+						<div class="btn btns">活动说明</div>
+						<!--<div class="btn">活动说明</div>-->
+						<div class="arrow"></div>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="page6 page">
+						<div class="swiper-container2">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide ">
+									<div class="rule">
+										<div class="rule1 ruleco"></div>
+									</div>
+                           		</div>
+                           		<div class="swiper-slide">
+                           			<div class="rule">
+                           				<div class="rule2 ruleco"></div>
+                           			</div>
+                           		</div>
+							</div>
+						</div>
+						<div class="swiper-container3">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide ">
+									<div class="rule">
+										<div class="rule3 ruleco"></div>
+									</div>
+                           		</div>
+                           		<div class="swiper-slide">
+                           			<div class="rule">
+                           				<div class="rule4 ruleco"></div>
+                           			</div>
+                           		</div>
+                           		<div class="swiper-slide">
+                           			<div class="rule">
+                           				<div class="rule5 ruleco"></div>
+                           			</div>
+                           		</div>
+                           		<div class="swiper-slide">
+                           			<div class="rule ">
+                           				<div class="rule6 ruleco"></div>
+                           			</div>
+                           		</div>
+							</div>
+						</div>
+						<div class="btn2 btns">
+							<div class="btn2_one">活动说明</div>
+							<div class="btn2_two">活动规则</div>
+						</div>
+						<a href="#" class="jt_left jt"></a>
+						<a href="#" class="jt_right jt"></a>
+						<div class="apply"></div>
+					</div>
+			</div>
+		</div>
+		<div id="music"><audio src="http://brand.wow-invite.com/case/ikea/cook/01/music.mp3" id="musicplay" autoplay="autoplay"></audio></div>
+		<div class="needle"></div>
+	</body>
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<script>
+		var loadtimer=null;
+		var Cpage1=true;
+		var Cpage2=true;
+		var Cpage3=true;
+		var Cpage4=true;
+		var enY = 0;
+		var mySwiper = new Swiper('.swiper-container', {
+			direction: 'vertical',
+			followFinger:true,
+			resistance:false,
+			nextButton:'.btn',
+//			shortSwipes:false,
+			onTouchStart: function(swiper, even) {
+				enY = 0
+			},
+			onTouchMove:function(swiper,even){
+				enY=even.touches[0].screenY;
+			},
+			onSlideChangeStart: function(swiper) {
+				switch(swiper.activeIndex) {
+					case 0:
+						page2again();	
+					break;
+					case 1:
+						page2();
+						page3again();
+					break;	
+					case 2:
+						page2again();
+						page4again();
+						page3();
+					break;
+					case 3:
+						page3again();
+						page4();
+					break;
+					case 4:
+						page4again();
+					 	page5();
+					 break;
+					 case 5:
+					 	
+				}
+			}
+
+		})
+		
+		
+		//第一页
+		function page1(){
+			setTimeout(function(){
+				$(".pg_tem").addClass("pg_show");
+				setTimeout(function(){
+					$(".pg_tem").css({"height":"20vh","top":"35vh","position":"absolue"})
+					setTimeout(function(){
+						$(".pg_content").show();
+						typing();
+					});
+				},500);
+			},100);
+		}
+		//第二页
+		function page2(){
+			setTimeout(function(){
+				$(".pic").addClass("animated fadeIn");
+				$(".pic").css("opacity","1");
+				setTimeout(function(){
+					$(".lighting").addClass("animated fadeIn");
+					$(".lighting").css("display","block");
+					$(".pg2_content").addClass("animated fadeInDown");
+					$(".pg2_content").css("display","block");
+				},800)
+			},800)
+			
+		}
+		function page2again(){
+			setTimeout(function(){
+				$(".pic").removeClass("animated fadeIn");
+				$(".pic").css("opacity","0");
+				setTimeout(function(){
+					$(".lighting").removeClass("animated fadeIn");
+					$(".lighting").css("display","none");
+					$(".pg2_content").removeClass("animated fadeInDown");
+					$(".pg2_content").css("display","none");
+				},200)
+			},200)
+			
+		}
+		//第三页
+		function page3(){
+			setTimeout(function(){
+				$(".table").addClass("animated fadeIn");
+				$(".table").css("display","block");
+				$(".shad").addClass("animated fadeIn");
+				$(".shad").css("display","block");
+				$(".lighting3").addClass("animated fadeIn");
+				$(".lighting3").css("display","block");
+				setTimeout(function(){
+					$(".page3_title").addClass("animated fadeInRightBig");
+					$(".page3_title").css("display","block");
+				},500);
+			},500)
+		}
+		function page3again(){
+			setTimeout(function(){
+				$(".table").removeClass("animated fadeIn");
+				$(".table").css("display","none");
+				$(".shad").removeClass("animated fadeIn");
+				$(".shad").css("display","none");
+				$(".lighting3").removeClass("animated fadeIn");
+				$(".lighting3").css("display","none");
+				setTimeout(function(){
+					$(".page3_title").removeClass("animated fadeInRightBig");
+					$(".page3_title").css("display","none");
+				},200)
+			},200)
+			
+			
+		}
+		//第四页
+		function page4(){
+			setTimeout(function(){
+				$(".page4_title").addClass("animated fadeInUp");
+				$(".page4_title").css("opacity","1");
+				setTimeout(function(){
+					$(".page4_title").children(".page4_word").addClass("spical");
+				})		
+			},500)
+		}
+		function page4again(){
+			setTimeout(function(){
+				$(".page4_title").removeClass("animated fadeInUp");
+				$(".page4_title").css("opacity","0");
+				setTimeout(function(){
+					$(".page4_title").children(".page4_word").removeClass("spical");
+				})		
+			},200)
+		}
+		//第五页
+		function page5(){
+			setTimeout(function(){
+				$(".pg5_tem").addClass("pg_show");
+				
+				setTimeout(function(){
+					$(".pg5_tem").css({"height":"20vh","top":"35vh","position":"absolue"})
+					setTimeout(function(){
+						$(".pg5_content").show();
+						typing2();
+						$(".btn").addClass("animated shake");
+					});
+				},500);
+			},100);
+		}
+		
+		
+		
+		//实现打字效果
+		var str="用心，让家中更有味道，这一次，一起为爱下厨";
+		var i=0;
+		function typing(){
+			var content=document.querySelector(".pg_content");
+			if(i<=str.length){
+				content.innerHTML=str.slice(0,i++)+"|";
+				setTimeout('typing()',300);
+			}else{
+				content.innerHTML=str;
+			}
+		}
+		var str2="不再让每次成为错过这一次,为爱下厨";
+		var j=0;
+		function typing2(){
+			var content2=document.querySelector(".pg5_content");
+			if(j<=str2.length){
+				content2.innerHTML=str2.slice(0,j++)+"|";
+				setTimeout('typing2()',300);
+			}else{
+				content2.innerHTML=str2;
+			}
+		}
+		
+		//第六页
+		var mySwiper2 = new Swiper ('.swiper-container2', {
+			    direction: 'horizontal',
+			    loop: true,
+		 })
+		var mySwiper3= new Swiper ('.swiper-container3', {
+			    direction: 'horizontal',
+			    loop: true,
+		 })
+		$(".btn2_one").click(function(){
+			$(".btn2_one").hide();
+			$(".btn2_two").show();
+			$(".swiper-container3").css("opacity","1");
+			$(".swiper-container2").hide();
+		})
+		$(".btn2_two").click(function(){
+			$(".btn2_two").hide();
+			$(".btn2_one").show();
+			$(".swiper-container2").show();
+			$(".swiper-container3").css("opacity","0");
+		})	
+		//音乐自动播放
+		$(document).ready(function(){
+			autoPlayMusic();
+			audioAutoPlay();
+		});
+		//音乐自动播放
+		function audioAutoPlay(){
+			var music=document.getElementById("musicplay");
+				music.play();
+			document.addEventListener("WeixinJSBridgeReady",function(){
+				music.play();
+			},false);
+		}
+		//音乐播放
+		function autoPlayMusic(){
+			//自动播放音乐效果，解决浏览器或者APP自动播放问题
+			function musicInBrowserHandler(){
+				musicplay(true);
+				document.body.removeEventListener("touchstart",musicInBrowserHandler);
+			}
+			document.body.addEventListener("touchstart",musicInBrowserHandler);
+			//自动播放音乐效果，解决微信自动播放问题
+			function musicInWeixinHandler(){
+				musicplay(true);
+				document.addEventListener("WeixinJSBridgeReady",function(){
+					musicplay(true);
+				},false);
+				document.removeEventListener("DOMContentLoaded",musicInWeixinHandler);
+			}
+			document.addEventListener("DOMContentLoaded",musicInWeixinHandler);
+		}
+		function musicplay(isPlay){
+			var media=document.querySelector("#music");
+			if(isPlay&&media.paused){
+				media.play();
+			}
+			if(!isPlay&&!media.paused){
+				media.pause();
+			}
+		}
+		
+		//预加载
+		var arr = ["images/1_1.jpg", "images/1_3.png", "images/2_1.jpg", "images/2_2.png", "images/2_3.png", "images/2_4.gif", "images/3_1.jpg", "images/3_2.png", "images/3_3.png", "images/3_4.png", "images/4_1.jpg", "images/6_1.jpg", "images/6_3.png", "images/6_4.png", "images/6_intro_1.png", "images/6_intro_2.png", "images/6_rule_1.png", "images/6_rule_2.png", "images/6_rule_3.png", "images/6_rule_4.png", "images/cp.png", "images/cz.png", "images/loading_icon.png", "images/logo .png", "images/units-icons.png", "images/yk-arrow.png"];
+		var imgs = [];
+		var index = 0;
+		function show() {
+			for(var i = 0; i < arr.length; i++) {
+				var imgObj = new Image();
+				imgObj.src = arr[i];
+				imgObj.onload = function() {
+					index++;
+					$(".loadingtext").html(parseInt(index / arr.length * 100) + "%");
+					setTimeout(function() {
+						imgs.push(this);
+					}, 600);
+					if(index == arr.length) {
+						$(".loading").hide();
+						page1();
+					}
+				}
+			}
+
+		}
+		loadtimer=setTimeout(show, 300);
+	</script>
+
+</html>
